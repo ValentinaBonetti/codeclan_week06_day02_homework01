@@ -42,6 +42,31 @@ Park.prototype.revenuePerYear = function(daysPerYear){
   return this.visitorsPerYear(daysPerYear)*this.ticketPrice;
 };
 
+Park.prototype.removeAllOfASpecies = function(speciesToRemove){
+  // find all of a species and try to subtract arrays
+  // arrayToSubtract = this.findDinoBySpecies(speciesToRemove);
+
+  let recheck = true;
+  while(recheck == true){
+    for(var i = 0;i < this.collectionOfDinosaurs.length; i ++){
+      if(this.collectionOfDinosaurs[i].species == speciesToRemove){
+        this.collectionOfDinosaurs.splice(i, 1);
+        recheck = true;
+        break;}
+        else{recheck = false;}
+        }
+      }
+
+
+// debugging session:
+  // for(var i = 0;i < this.collectionOfDinosaurs.length; i ++){
+  //   console.log('species: ',this.collectionOfDinosaurs[i].species);
+  //   console.log('species to remove:', speciesToRemove);
+  //   console.log(this.collectionOfDinosaurs[i].species == speciesToRemove);
+  // };
+
+};
+
 
 
 module.exports = Park;

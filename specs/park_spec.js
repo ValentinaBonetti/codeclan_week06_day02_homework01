@@ -21,7 +21,7 @@ describe('Park', function(){
 
     dino1 = new Dino('Tyrannosaurus','carnivore',250);
     dino2 = new Dino('Ankylosaurus','herbivore',30);
-    dino3 = new Dino('Velociraptor','carnivore',190);
+    dino3 = new Dino('Tyrannosaurus','carnivore',190);
     dino4 = new Dino('Ornithomimus','omnivore',20);
     dino5 = new Dino('Valentosaurus','carnivore',0);
 
@@ -64,7 +64,7 @@ describe('Park', function(){
 
     it('should find all dinosaurs of a particular species',function(){
       const actual = park1.findDinoBySpecies('Tyrannosaurus');
-      assert.deepStrictEqual([dino1],actual);
+      assert.deepStrictEqual([dino1,dino3],actual);
     });
 
     it('should calculate the total number of visitors per day',function(){
@@ -84,8 +84,14 @@ describe('Park', function(){
       assert.strictEqual(5*490*300,actual);
     });
 
-
     // Extensions
+
+    it('should be able to remove all dinosaurs of a particular species',function(){
+      park1.removeAllOfASpecies('Tyrannosaurus');
+      actual = park1.collectionOfDinosaurs;
+      expected = [dino2,dino4];
+      assert.deepStrictEqual(expected,actual);
+    });
     // A park must be able to:
     //
     // Remove all dinosaurs of a particular species
