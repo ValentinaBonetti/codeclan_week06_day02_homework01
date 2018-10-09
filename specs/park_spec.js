@@ -67,11 +67,24 @@ describe('Park', function(){
       assert.deepStrictEqual([dino1],actual);
     });
 
-    it('should calculate the total number of visitors per day')
+    it('should calculate the total number of visitors per day',function(){
+      const actual = park1.visitorsPerDay();
+      assert.strictEqual(490,actual);
+    });
 
-    // Calculate the total number of visitors per day
-    // Calculate the total number of visitors per year
-    // Calculate the total revenue from ticket sales for one year
+    it('should calculate the total number of visitors per year',function(){
+      // take opening days per year as input
+      const actual = park1.visitorsPerYear(300);
+      assert.strictEqual(490*300,actual);
+    });
+
+    it('should calculate the total revenue from ticket sales for one year',function(){
+      // take opening days per year as input
+      const actual = park1.revenuePerYear(300);
+      assert.strictEqual(5*490*300,actual);
+    });
+
+
     // Extensions
     // A park must be able to:
     //
