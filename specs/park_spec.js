@@ -86,17 +86,22 @@ describe('Park', function(){
 
     // Extensions
 
+    // Remove all dinosaurs of a particular species
     it('should be able to remove all dinosaurs of a particular species',function(){
       park1.removeAllOfASpecies('Tyrannosaurus');
       actual = park1.collectionOfDinosaurs;
       expected = [dino2,dino4];
       assert.deepStrictEqual(expected,actual);
     });
-    // A park must be able to:
-    //
-    // Remove all dinosaurs of a particular species
-    // Provide an object containing each of the diet types and the number of dinosaurs in the park of that diet type
+
+    // Provide an object containing each of the diet types
+    // and the number of dinosaurs in the park of that diet type
     // Example: { 'carnivore': 5, 'herbivore': 2, 'omnivore': 1 }
+    it('should provide dietary requirements and numbers for each', function(){
+      actual = park1.dietaryRequirements();
+      expected = {'carnivore': 2, 'herbivore': 1, 'omnivore': 1};
+      assert.deepStrictEqual(expected,actual);
+    })
 
   });
 })

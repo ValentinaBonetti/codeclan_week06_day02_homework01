@@ -43,8 +43,10 @@ Park.prototype.revenuePerYear = function(daysPerYear){
 };
 
 Park.prototype.removeAllOfASpecies = function(speciesToRemove){
+  // first attempt:
   // find all of a species and try to subtract arrays
   // arrayToSubtract = this.findDinoBySpecies(speciesToRemove);
+  // result: not easy to subtract arrays of objects
 
   let recheck = true;
   while(recheck == true){
@@ -65,6 +67,16 @@ Park.prototype.removeAllOfASpecies = function(speciesToRemove){
   //   console.log(this.collectionOfDinosaurs[i].species == speciesToRemove);
   // };
 
+};
+
+Park.prototype.dietaryRequirements = function(){
+  let dietObject = {'carnivore': 0, 'herbivore': 0, 'omnivore': 0};
+  // how do I get the keys from the collection (if not there yet)?
+  for(dino of this.collectionOfDinosaurs){
+    dietString = dino.diet
+    dietObject[dietString] += 1;
+  };
+  return dietObject;
 };
 
 
