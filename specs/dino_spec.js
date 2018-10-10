@@ -17,17 +17,17 @@ describe('Dino', function(){
 
   it('should have a species',function(){
     const actual = dino1.species;
-    assert.strictEqual('Tyrannosaurus',actual);
+    assert.strictEqual(actual,'Tyrannosaurus');
   });
 
   it('should have a diet',function(){
     const actual = dino1.diet;
-    assert.strictEqual('carnivore',actual);
+    assert.strictEqual(actual,'carnivore');
   });
 
   it('should have an average numberOfVisitors per day',function(){
     const actual = dino1.numberOfVisitorsPerDay;
-    assert.strictEqual(250,actual);
+    assert.strictEqual(actual,250);
   });
 
 });

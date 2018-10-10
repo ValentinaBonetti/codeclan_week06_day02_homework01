@@ -30,17 +30,17 @@ describe('Park', function(){
 
   it('should have a name',function(){
     const actual = park1.name;
-    assert.strictEqual('Peccioli',actual);
+    assert.strictEqual(actual,'Peccioli');
   });
 
   it('should have a ticket price',function(){
     const actual = park1.ticketPrice;
-    assert.strictEqual(5,actual);
+    assert.strictEqual(actual,5);
   });
 
   it('should have a collection of dinosaurs',function(){
     const actual = park1.collectionOfDinosaurs;
-    assert.deepStrictEqual([dino1,dino2,dino3,dino4],actual);
+    assert.deepStrictEqual(actual,[dino1,dino2,dino3,dino4]);
   });
 
   describe('Park methods', function(){
@@ -48,40 +48,40 @@ describe('Park', function(){
     it('should add a dinosaur to its collection of dinosaurs', function(){
       park1.addDino(dino5);
       const actual = park1.collectionOfDinosaurs.includes(dino5);
-      assert.strictEqual(true,actual);
+      assert.strictEqual(actual,true);
     });
 
     it('should remove a dinosaur from its collection of dinosaurs',function(){
       park1.removeDino();
       const actual = park1.collectionOfDinosaurs.length;
-      assert.strictEqual(3,actual);
+      assert.strictEqual(actual,3);
     });
 
     it('should find the dinosaur that attracts the most visitors',function(){
       const actual = park1.findMostAttractive();
-      assert.deepStrictEqual(dino1,actual);
+      assert.deepStrictEqual(actual,dino1);
     });
 
     it('should find all dinosaurs of a particular species',function(){
       const actual = park1.findDinoBySpecies('Tyrannosaurus');
-      assert.deepStrictEqual([dino1,dino3],actual);
+      assert.deepStrictEqual(actual,[dino1,dino3]);
     });
 
     it('should calculate the total number of visitors per day',function(){
       const actual = park1.visitorsPerDay();
-      assert.strictEqual(490,actual);
+      assert.strictEqual(actual,490);
     });
 
     it('should calculate the total number of visitors per year',function(){
       // take opening days per year as input
       const actual = park1.visitorsPerYear(300);
-      assert.strictEqual(490*300,actual);
+      assert.strictEqual(actual,490*300);
     });
 
     it('should calculate the total revenue from ticket sales for one year',function(){
       // take opening days per year as input
       const actual = park1.revenuePerYear(300);
-      assert.strictEqual(5*490*300,actual);
+      assert.strictEqual(actual,5*490*300);
     });
 
     // Extensions
@@ -91,7 +91,7 @@ describe('Park', function(){
       park1.removeAllOfASpecies('Tyrannosaurus');
       actual = park1.collectionOfDinosaurs;
       expected = [dino2,dino4];
-      assert.deepStrictEqual(expected,actual);
+      assert.deepStrictEqual(actual,expected);
     });
 
     // Provide an object containing each of the diet types
@@ -100,7 +100,7 @@ describe('Park', function(){
     it('should provide dietary requirements and numbers for each', function(){
       actual = park1.dietaryRequirements();
       expected = {'carnivore': 2, 'herbivore': 1, 'omnivore': 1};
-      assert.deepStrictEqual(expected,actual);
+      assert.deepStrictEqual(actual,expected);
     })
 
   });

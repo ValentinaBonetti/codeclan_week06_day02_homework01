@@ -8,8 +8,11 @@ Park.prototype.addDino = function(newDino){
   this.collectionOfDinosaurs.push(newDino);
 };
 
-Park.prototype.removeDino = function(){
-  this.collectionOfDinosaurs.pop();
+Park.prototype.removeDino = function(dinoToRemove){
+  // easy way:
+  // this.collectionOfDinosaurs.pop();
+  let position = this.collectionOfDinosaurs.indexOf(dinoToRemove);
+  this.collectionOfDinosaurs.splice(position,1);
 };
 
 Park.prototype.findMostAttractive = function(){
@@ -20,15 +23,15 @@ Park.prototype.findMostAttractive = function(){
 
 Park.prototype.findDinoBySpecies = function(requiredSpecies){
   let foundDinos = []
-  for(dino of this.collectionOfDinosaurs){
-    if(dino.species === requiredSpecies){foundDinos.push(dino)}
+  for(let dino of this.collectionOfDinosaurs){
+    if(dino.species.toLowerCase() === requiredSpecies.toLowerCase()){foundDinos.push(dino)}
   };
   return foundDinos;
 };
 
 Park.prototype.visitorsPerDay = function(){
   let total = 0;
-  for(dino of this.collectionOfDinosaurs){
+  for(let dino of this.collectionOfDinosaurs){
     total += dino.numberOfVisitorsPerDay;
   };
   return total;
@@ -48,16 +51,25 @@ Park.prototype.removeAllOfASpecies = function(speciesToRemove){
   // arrayToSubtract = this.findDinoBySpecies(speciesToRemove);
   // result: not easy to subtract arrays of objects
 
-  let recheck = true;
-  while(recheck == true){
-    for(var i = 0;i < this.collectionOfDinosaurs.length; i ++){
-      if(this.collectionOfDinosaurs[i].species == speciesToRemove){
-        this.collectionOfDinosaurs.splice(i, 1);
-        recheck = true;
-        break;}
-        else{recheck = false;}
-        }
-      }
+  // this works:
+  // let recheck = true;
+  // while(recheck == true){
+  //   for(let i = 0;i < this.collectionOfDinosaurs.length; i ++){
+  //     if(this.collectionOfDinosaurs[i].species == speciesToRemove){
+  //       this.collectionOfDinosaurs.splice(i, 1);
+  //       recheck = true;
+  //       break;}
+  //       else{recheck = false;}
+  //       }
+  //     }
+
+
+  // another (simpler and classical way) that works is this (LOOPING BACKWARDS!):
+   for(let i=this.collectionOfDinosaurs.length-1; i>=0; i--){
+     if(this.collectionOfDinosaurs[i].species.toLowerCase() == speciesToRemove.toLowerCase()){
+       this.collectionOfDinosaurs.splice(i, 1);
+     }
+   }
 
 
 // debugging session:
@@ -70,11 +82,15 @@ Park.prototype.removeAllOfASpecies = function(speciesToRemove){
 };
 
 Park.prototype.dietaryRequirements = function(){
-  let dietObject = {'carnivore': 0, 'herbivore': 0, 'omnivore': 0};
-  // how do I get the keys from the collection (if not there yet)?
-  for(dino of this.collectionOfDinosaurs){
-    dietString = dino.diet
-    dietObject[dietString] += 1;
+
+  let dietObject = {};
+
+  for(let dino of this.collectionOfDinosaurs){
+    if(dino.diet in dietObject){
+      dietObject[dino.diet]++;
+    }else{
+      dietObject[dino.diet] = 1;
+    }
   };
   return dietObject;
 };
